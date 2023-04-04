@@ -1,3 +1,5 @@
+#DE DECIMAL A ROMANO
+
 #detecta la unidad y busca el equivalente en romano
 def unidadestorom (decim):
     unid1 = { "":"", "0":"", "1":"I", "2":"II", "3":"III", "4":"IV", "5":"V", "6":"VI", "7":"VII", "8":"VIII", "9":"IX"}
@@ -42,6 +44,43 @@ def entero (decim):
         c = unidadestorom (decim)
         return (c)
     
+#DE ROMANO A DECIMAL
+
+def romantodecimal (numero):
+    letra = {"I":1, "V":5, "X":10, "L":50, "C":100, "D":500,"M":1000}
+    num = []
+    
+    for c in numero[::-1]:
+        for v, x in letra.items():
+            if c == v:
+                num.append(x)
+    for d in range(len(num)-1):
+        if num[d+1] < num[d]:
+            resta = num[d] - num[d+1]
+            num.append(resta)
+    if 4 in num:
+        num.remove(5)
+        num.remove(1)
+    if 9 in num:
+        num.remove(10)
+        num.remove(1)
+    if 40 in num:
+        num.remove(50)
+        num.remove(10)
+    if 90 in num:
+        num.remove(100)
+        num.remove(10)
+    if 400 in num:
+        num.remove (500)
+        num.remove (100)
+    if 900 in num:
+        num.remove (1000)
+        num.remove (100)
+
+    resp = sum(num) 
+    return resp
+
+
 
 if __name__ == "__main__":
     print(entero(2))
